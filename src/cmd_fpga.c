@@ -23,6 +23,7 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	v_dir &= ~0x00c7;
 	v_dir |= 0x46;
 	*p32dir = v_dir;
+	printf(" dir.reg: %08x\n",v_dir);
 
 	v_data = *p32data;
 	v_data0 = v_data & (~0x00c7);
@@ -30,33 +31,37 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	v_dataHH = v_data0 | 0x46;
 	v_dataLL = v_data0 | 0x02;
 	v_dataHL = v_data0 | 0x42;
+	printf(" data.reg: %08x\n",v_data);
 
 	v_data1 = v_data0 | 0x0002;
 	*p32data = v_data1;
 	printf("loop wait status high\n");
 	for(;;){
 		v_status=*p32status;
+		printf(" status.reg: %08x\r",v_status);
 		if(1 == (1&v_status)) break;
 	}
-	printf("nConfig.high ==> nStatus.high\n");
+	printf("\nnConfig.high ==> nStatus.high\n");
 
 	v_data1 = v_data0 | 0x00;
 	*p32data = v_data1;
 	printf("loop wait status low\n");
 	for(;;){
 		v_status=*p32status;
+		printf(" status.reg: %08x\r",v_status);
 		if(0 == (1&v_status)) break;
 	}
-	printf("nConfig.low ==> nStatus.low\n");
+	printf("\nnConfig.low ==> nStatus.low\n");
 
 	v_data1 = v_data0 | 0x0002;
 	*p32data = v_data1;
 	printf("loop wait status high\n");
 	for(;;){
 		v_status=*p32status;
+		printf(" status.reg: %08x\r",v_status);
 		if(1 == (1&v_status)) break;
 	}
-	printf("nConfig.high ==> nStatus.high\n");
+	printf("\nnConfig.high ==> nStatus.high\n");
 
 	p = 0x10800000;
 	len=7212234;//len cu
@@ -130,7 +135,7 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
     printf("\n wait.done \n");
     for(i=0;;i++){
       v_status = *p32status;
-      //printf("wait.status.high    status: %08x   bit.status %d\r",v_status,v_status & 1);
+      printf("wait.status.high    status: %08x   bit.status %d\r",v_status,v_status & 1);
       if(0x81==(0x81&v_status))break;
       //if(0==(i&0x0fffff))printf(" %d status: 0x%08x\n",i,v_status);
       //output_d(0);
