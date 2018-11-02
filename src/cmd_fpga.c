@@ -126,7 +126,17 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 			*p32data=v_dataHL;
 		}
 	}
-	printf(" ** done\n");
+    printf("\n wait.done \n");
+    for(i=0;;i++){
+      v_status = *p32status;
+      //printf("wait.status.high    status: %08x   bit.status %d\r",v_status,v_status & 1);
+      if(0x81==(0x81&v_status))break;
+      //if(0==(i&0x0fffff))printf(" %d status: 0x%08x\n",i,v_status);
+      //output_d(0);
+	  *p32data=v_dataLL;
+	  *p32data=v_dataHL;
+    }
+    printf("\n   download done \n");
 #if 0
 	int i;
 	unsigned int *p32,*p32dir,u,u1;
