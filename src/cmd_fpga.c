@@ -9,7 +9,8 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 { 
 	int i;
 	int len;
-	volatile unsigned int *p32data,*p32dir,*p32status;
+	unsigned int *p32data,*p32dir;
+	volatile unsigned int *p32status;
 	unsigned int v_dir,v_data,v_status;
 	unsigned int v_data0,v_data1,v_dataLH,v_dataHH,v_dataLL,v_dataHL;
 	char *p,c;
@@ -19,7 +20,7 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	p32status = 0x20b4008;
 
 	v_dir = *p32dir;
-	v_dir &= 0x00c7;
+	v_dir &= ~0x00c7;
 	v_dir |= 0x46;
 	*p32dir = v_dir;
 
