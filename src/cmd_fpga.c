@@ -5,7 +5,7 @@
 #include <asm/io.h>
 #include <config_cmd_default.h>
 
-int w32(unsinged int *pi,unsinged int v);
+int w32(unsinged int *pi,unsigned int v);
 
 int w32(unsinged int *pi,unsigned int v)
 {
