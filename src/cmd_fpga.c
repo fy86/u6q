@@ -20,7 +20,7 @@ int w32(unsigned int *pi,unsigned int v)
 	pv = pi;
 	*pv = v;
 	//*pi=v;
-	//for(i = 0 ;i<0x100;i++)asm("nop");
+	for(i = 0 ;i<0x100;i++)asm("nop");
 	return 1;
 }
 int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])  
