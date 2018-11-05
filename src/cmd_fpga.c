@@ -21,6 +21,18 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	unsigned int v_dir,v_data,v_status;
 	unsigned int v_data0,v_data1,v_dataLH,v_dataHH,v_dataLL,v_dataHL;
 	char *p,c;
+	unsigned int *pmux70,*pmux71,*pmux72,*pmux76,*pmux77;//gpio7_0,gpio7_1..............
+	pmux70=0x20e02b0;
+	pmux70=0x20e02b4;
+	pmux70=0x20e06a0;
+	pmux70=0x20e02c8;
+	pmux70=0x20e02cc;
+
+	*pmux70 = 5;
+	*pmux71 = 5;
+	*pmux72 = 5;
+	*pmux76 = 5;
+	*pmux77 = 5;
 
 	p32data   = 0x20b4000;
 	p32dir    = 0x20b4004;
