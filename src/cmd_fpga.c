@@ -34,6 +34,18 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	*pmux76 = 5;
 	*pmux77 = 5;
 
+	pmux70=0x20e0698;
+	pmux71=0x20e069c;
+	pmux72=0x20e06a0;
+	pmux76=0x20e06b0;
+	pmux77=0x20e06b4;
+
+	*pmux70 = 0x1b0b0;
+	*pmux71 = 0x1b0b0;
+	*pmux72 = 0x1b0b0;
+	*pmux76 = 0x1b0b0;
+	*pmux77 = 0x1b0b0;
+
 	p32data   = 0x20b4000;
 	p32dir    = 0x20b4004;
 	p32status = 0x20b4008;
