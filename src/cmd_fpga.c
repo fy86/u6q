@@ -9,10 +9,12 @@ int w32(unsigned int *pi,unsigned int v);
 
 int w32(unsigned int *pi,unsigned int v)
 {
+	int i;
 	volatile unsigned int *pv;
 	pv = pi;
-	*pv = v;
-	//asm("nop");
+	//*pv = v;
+	*pi=v;
+	for(i = 0 ;i<0x100000;i++)asm("nop");
 	return 1;
 }
 int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])  
@@ -101,6 +103,7 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	p = 0x10800000;
 	len=7212234;//len cu
 	for(i=0;i<len;i++){
+		if(0==(0x0fffff & i))printf(" loop i : %x\n",i);
 		c = *p++;
 		if(c&0x01){
 			//*p32data=v_dataLH;
