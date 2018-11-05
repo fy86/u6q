@@ -23,10 +23,10 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	char *p,c;
 	unsigned int *pmux70,*pmux71,*pmux72,*pmux76,*pmux77;//gpio7_0,gpio7_1..............
 	pmux70=0x20e02b0;
-	pmux70=0x20e02b4;
-	pmux70=0x20e02b8;
-	pmux70=0x20e02c8;
-	pmux70=0x20e02cc;
+	pmux71=0x20e02b4;
+	pmux72=0x20e02b8;
+	pmux76=0x20e02c8;
+	pmux77=0x20e02cc;
 
 	*pmux70 = 5;
 	*pmux71 = 5;
