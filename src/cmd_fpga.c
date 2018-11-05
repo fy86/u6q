@@ -7,19 +7,9 @@
 
 int w32(unsigned int *pi,unsigned int v);
 
-int __attribute__ ((noinline)) w32i(unsigned int *pi,unsigned int v)
-{
-	*pi=v;
-	return 1;
-}
-
 int __attribute__ ((noinline)) w32(unsigned int *pi,unsigned int v)
 {
-	int i;
-	volatile unsigned int *pv;
-	pv = pi;
-	*pv = v;
-	//*pi=v;
+	*pi=v;
 	//for(i = 0 ;i<0x100;i++)asm("nop");
 	return 1;
 }
