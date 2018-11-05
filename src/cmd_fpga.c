@@ -5,8 +5,6 @@
 #include <asm/io.h>
 #include <config_cmd_default.h>
 
-int w32(unsigned int *pi,unsigned int v);
-
 void __attribute__ ((noinline)) w32(unsigned int *pi,unsigned int v)
 {
 	*pi=v;
