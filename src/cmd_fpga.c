@@ -10,6 +10,7 @@ int w32(unsigned int *pi,unsigned int v);
 int w32(unsigned int *pi,unsigned int v)
 {
 	*pi = v;
+	asm("nop");
 	return 1;
 }
 int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])  
