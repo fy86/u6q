@@ -12,9 +12,9 @@ int w32(unsigned int *pi,unsigned int v)
 	int i;
 	volatile unsigned int *pv;
 	pv = pi;
-	//*pv = v;
-	*pi=v;
-	for(i = 0 ;i<0x100;i++)asm("nop");
+	*pv = v;
+	//*pi=v;
+	//for(i = 0 ;i<0x100;i++)asm("nop");
 	return 1;
 }
 int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])  
@@ -46,11 +46,11 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	pmux76=0x20e06b0;
 	pmux77=0x20e06b4;
 
-	*pmux70 = 0x1b0b0;
-	*pmux71 = 0x1b0b0;
-	*pmux72 = 0x170f1;
-	*pmux76 = 0x170f1;
-	*pmux77 = 0x170f1;
+	*pmux70 = 0x1f0f9;//0x1b0b0;
+	*pmux71 = 0x1f0f9;
+	*pmux72 = 0x1f0f9;
+	*pmux76 = 0x1f0f9;
+	*pmux77 = 0x1f0f9;
 #endif
 	p32data   = 0x20b4000;
 	p32dir    = 0x20b4004;
