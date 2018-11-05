@@ -7,11 +7,10 @@
 
 int w32(unsigned int *pi,unsigned int v);
 
-int __attribute__ ((noinline)) w32(unsigned int *pi,unsigned int v)
+void __attribute__ ((noinline)) w32(unsigned int *pi,unsigned int v)
 {
 	*pi=v;
-	//for(i = 0 ;i<0x100;i++)asm("nop");
-	return 1;
+	return;
 }
 int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])  
 { 
@@ -101,17 +100,89 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	for(i=0;i<len;i++){
 		if(0==(0x0fffff & i))printf(" loop i : %x\n",i);
 		c = *p++;
+#if 1 ////////////////////////////////////
 		if(c&0x01){
-			//*p32data=v_dataLH;
-			//*p32data=v_dataHH;
-			w32(p32data,v_dataLH);
-			w32(p32data,v_dataHH);
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+			//w32(p32data,v_dataLH);
+			//w32(p32data,v_dataHH);
 		}
 		else{
-			//*p32data=v_dataLL;
-			//*p32data=v_dataHL;
-			w32(p32data,v_dataLL);
-			w32(p32data,v_dataHL);
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+			//w32(p32data,v_dataLL);
+			//w32(p32data,v_dataHL);
+		}
+		if(c&0x02){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+			//w32(p32data,v_dataLH);
+			//w32(p32data,v_dataHH);
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+		if(c&0x04){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+		if(c&0x08){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+		if(c&0x10){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+		if(c&0x20){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+		if(c&0x40){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+		if(c&0x80){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+		}
+#else         /////////// w32
+		if(c&0x01){
+			*p32data=v_dataLH;
+			*p32data=v_dataHH;
+			//w32(p32data,v_dataLH);
+			//w32(p32data,v_dataHH);
+		}
+		else{
+			*p32data=v_dataLL;
+			*p32data=v_dataHL;
+			//w32(p32data,v_dataLL);
+			//w32(p32data,v_dataHL);
 		}
 		if(c&0x02){
 			//*p32data=v_dataLH;
@@ -197,6 +268,8 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 			w32(p32data,v_dataLL);
 			w32(p32data,v_dataHL);
 		}
+
+#endif
 	}
     printf("\n wait.done \n");
     for(i=0;;i++){
