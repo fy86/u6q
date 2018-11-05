@@ -9,7 +9,10 @@ int w32(unsigned int *pi,unsigned int v);
 
 int w32(unsigned int *pi,unsigned int v)
 {
-	*pi = v;
+	volatile unsigned int *pv;
+	pv = pi;
+	*pv = v;
+	udelay(1);
 	asm("nop");
 	return 1;
 }
@@ -17,7 +20,7 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 { 
 	int i;
 	int len;
-	unsigned int *p32data,*p32dir;
+	volatile unsigned int *p32data,*p32dir;
 	volatile unsigned int *p32status;
 	unsigned int v_dir,v_data,v_status;
 	unsigned int v_data0,v_data1,v_dataLH,v_dataHH,v_dataLL,v_dataHL;
@@ -101,100 +104,100 @@ int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 	for(i=0;i<len;i++){
 		c = *p++;
 		if(c&0x01){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x02){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x04){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x08){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x10){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x20){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x40){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 		if(c&0x80){
-			*p32data=v_dataLH;
-			*p32data=v_dataHH;
-			//w32(p32data,v_dataLH);
-			//w32(p32data,v_dataHH);
+			//*p32data=v_dataLH;
+			//*p32data=v_dataHH;
+			w32(p32data,v_dataLH);
+			w32(p32data,v_dataHH);
 		}
 		else{
-			*p32data=v_dataLL;
-			*p32data=v_dataHL;
-			//w32(p32data,v_dataLL);
-			//w32(p32data,v_dataHL);
+			//*p32data=v_dataLL;
+			//*p32data=v_dataHL;
+			w32(p32data,v_dataLL);
+			w32(p32data,v_dataHL);
 		}
 	}
     printf("\n wait.done \n");
