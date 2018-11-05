@@ -12,8 +12,7 @@ int w32(unsigned int *pi,unsigned int v)
 	volatile unsigned int *pv;
 	pv = pi;
 	*pv = v;
-	udelay(1);
-	asm("nop");
+	//asm("nop");
 	return 1;
 }
 int do_fpga(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])  
